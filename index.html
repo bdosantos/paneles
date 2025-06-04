@@ -30,7 +30,7 @@
         <!-- Modelo 3D del museo -->
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
             <!-- Pantalla de vídeo dentro del museo -->
-            <a-video src="electronica.mp4" position="0 1.5 -1" width="0.25" height="0.25" autoplay loop muted="true" rotation="0 90 0"></a-video>
+            <a-video src="electronica.mp4" position="0.5 0.5 -0.5" width="0.25" height="0.25" autoplay loop muted="true" rotation="0 90 0"></a-video>
         </a-entity>
     </a-scene>
 
@@ -42,7 +42,7 @@
             if (/Android|iPhone|iPad|iPod|Oculus|VR/i.test(navigator.userAgent)) {
                 camera.setAttribute("wasd-controls", "acceleration: 300"); // Movilidad más estable en móviles y VR
             } else {
-                camera.setAttribute("wasd-controls", "acceleration: 50"); // Velocidad estándar en PC
+                camera.setAttribute("wasd-controls", "acceleration: 10"); // Velocidad estándar en PC
             }
 
             // Forzar reproducción automática de vídeos

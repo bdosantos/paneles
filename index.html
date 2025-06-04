@@ -16,8 +16,7 @@
         <!-- Carga de modelos y vídeos -->
         <a-assets>
             <a-asset-item id="museo2-glb" src="museo2.glb"></a-asset-item>
-            <a-asset-item id="electronica-mp4" src="electronica.mp4"></a-asset-item>
-
+            <video id="electronica-mp4" src="electronica.mp4" preload="auto"></video>
         </a-assets>
 
         <!-- Fondo para evitar pantalla negra -->
@@ -28,13 +27,10 @@
             <a-entity id="camera" camera look-controls wasd-controls="userHeight: 0.25" position="0 0 0"></a-entity>
         </a-entity>
 
-        <!-- Modelo 3D del museo (reducido) -->
+        <!-- Modelo 3D del museo -->
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
-
-
-            <!-- Pantallas con vídeos dentro del museo -->
-             <a-entity gltf-model="#electronica-mp4" scale="0.1 0.1 0.1" position="0 0 0"></a-entity>
-      
+            <!-- Pantalla de vídeo dentro del museo -->
+            <a-video src="#electronica-mp4" position="0 1.5 -1" width="2" height="1" autoplay loop></a-video>
         </a-entity>
     </a-scene>
 

@@ -17,6 +17,7 @@
         <a-assets>
             <a-asset-item id="museo2-glb" src="museo2.glb"></a-asset-item>
             <video id="electronica-mp4" src="electronica.mp4" preload="auto"></video>
+            <video id="caja2-mp4" src="caja2.mp4" preload="auto"></video>
         </a-assets>
 
         <!-- Fondo para evitar pantalla negra -->
@@ -30,7 +31,8 @@
         <!-- Modelo 3D del museo -->
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
             <!-- Pantalla de vídeo dentro del museo -->
-            <a-video src="electronica.mp4" position="0.5 0.5 -0.5" width="0.25" height="0.25" autoplay loop muted="true" rotation="0 90 0"></a-video>
+            <a-video src="electronica.mp4" position="0.5 0.5 0" width="0.25" height="0.25" autoplay loop muted="true" rotation="0 90 0"></a-video>
+            <a-video src="caja2.mp4" position="0.5 0.5 -0.5" width="0.25" height="0.25" autoplay loop muted="true" rotation="0 90 0"></a-video>
         </a-entity>
     </a-scene>
 

@@ -27,12 +27,12 @@
         <!-- Modelo 3D del museo -->
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
             
-            <!-- Cámara dentro del museo con ajuste para móviles -->
+            <!-- Cámara dentro del museo con altura establecida en 0.25 -->
             <a-entity id="cameraRig" position="0 0.25 0">
                 <a-entity id="camera" camera look-controls wasd-controls="acceleration: 50" position="0 0 0"></a-entity>
             </a-entity>
             
-            <!-- Pantallas de vídeo dentro del museo -->
+            <!-- Pantallas de vídeo dentro del museo a altura 0.5 -->
             <a-video src="electronica.mp4" position="0 0.5 -0.5" width="0.75" height="0.5" autoplay loop muted="true" rotation="0 90 0"></a-video>
             <a-video src="caja2.mp4" position="-0.5 0.5 -0.5" width="0.5" height="0.25" autoplay loop muted="true" rotation="0 180 0"></a-video>
             
@@ -45,16 +45,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let cameraRig = document.querySelector("#cameraRig");
-            let camera = document.querySelector("#camera");
 
-            // Ajustar cámara en móviles sin afectar PC
-            if (/Android|iPhone|iPad|iPod|Oculus|VR/i.test(navigator.userAgent)) {
-                cameraRig.setAttribute("position", "0 0.25 0"); // Ajuste de altura para móviles
-                camera.setAttribute("wasd-controls", "acceleration: 10"); // Menor aceleración en móviles
-            } else {
-                cameraRig.setAttribute("position", "0 0.25 0"); // Misma altura en PC
-                camera.setAttribute("wasd-controls", "acceleration: 50"); // Velocidad adecuada en PC
-            }
+            // Ajustar altura de la cámara en móviles y PC
+            cameraRig.setAttribute("position", "0 0.25 0"); // Altura uniforme en ambos dispositivos
 
             // Forzar reproducción automática de vídeos
             document.querySelectorAll("video").forEach(video => {

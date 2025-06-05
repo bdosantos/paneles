@@ -28,16 +28,16 @@
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
             
             <!-- Cámara dentro del museo con ajuste para móviles -->
-            <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="cameraRig" position="0 0.25 0">
                 <a-entity id="camera" camera look-controls wasd-controls="acceleration: 50" position="0 0 0"></a-entity>
             </a-entity>
             
             <!-- Pantallas de vídeo dentro del museo -->
-            <a-video src="electronica.mp4" position="0 1.5 -0.5" width="0.75" height="0.5" autoplay loop muted="true" rotation="0 90 0"></a-video>
-            <a-video src="caja2.mp4" position="-0.5 1.5 -0.5" width="0.5" height="0.25" autoplay loop muted="true" rotation="0 180 0"></a-video>
+            <a-video src="electronica.mp4" position="0 0.5 -0.5" width="0.75" height="0.5" autoplay loop muted="true" rotation="0 90 0"></a-video>
+            <a-video src="caja2.mp4" position="-0.5 0.5 -0.5" width="0.5" height="0.25" autoplay loop muted="true" rotation="0 180 0"></a-video>
             
             <!-- Modelo electrónico dentro del museo -->
-            <a-entity gltf-model="#Gelectronica-glb" scale="0.05 0.05 0.05" position="0.5 1.5 -0.75" rotation="90 -90 0"></a-entity>
+            <a-entity gltf-model="#Gelectronica-glb" scale="0.05 0.05 0.05" position="0.5 0.5 -0.75" rotation="90 -90 0"></a-entity>
 
         </a-entity>
     </a-scene>

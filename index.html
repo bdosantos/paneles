@@ -38,7 +38,66 @@
             
             <!-- Modelo electrónico dentro del museo -->
             <a-entity gltf-model="#Gelectronica-glb" scale="0.05 0.05 0.05" position="0.5 0.5 -0.75" rotation="90 -90 0"></a-entity>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Malasaña en la Estratosfera</title>
+    <meta name="author" content="Begoña Dosantos">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene physics="debug: false" shadow="type: basic" renderer="antialias: true; colorManagement: true;">
+        <!-- Iluminación corregida -->
+        <a-light type="ambient" color="#FFF" intensity="1"></a-light>
+        <a-light type="directional" color="#FFF" intensity="0.6" position="1 3 1"></a-light>
 
+        <!-- Carga de modelos y vídeos -->
+        <a-assets>
+            <a-asset-item id="museo2-glb" src="museo2.glb"></a-asset-item>
+            <video id="electronica-mp4" src="electronica.mp4" preload="auto"></video>
+            <video id="caja2-mp4" src="caja2.mp4" preload="auto"></video>
+            <a-asset-item id="Gelectronica-glb" src="Gelectronica.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- Fondo para evitar pantalla negra -->
+        <a-sky color="#AAAAAA"></a-sky>
+
+        <!-- Modelo 3D del museo -->
+        <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
+            
+            <!-- Cámara dentro del museo con altura establecida en 0.25 -->
+            <a-entity id="cameraRig" position="0 0.25 0">
+                <a-entity id="camera" camera look-controls wasd-controls="acceleration: 50" position="0 0 0"></a-entity>
+            </a-entity>
+            
+            <!-- Pantallas de vídeo dentro del museo a altura 0.5 -->
+            <a-video src="electronica.mp4" position="0 0.5 -0.5" width="0.75" height="0.5" autoplay loop muted="true" rotation="0 90 0"></a-video>
+            <a-video src="caja2.mp4" position="-0.5 0.5 -0.5" width="0.5" height="0.25" autoplay loop muted="true" rotation="0 180 0"></a-video>
+            
+            <!-- Modelo electrónico dentro del museo -->
+            <a-entity gltf-model="#Gelectronica-glb" scale="0.05 0.05 0.05" position="0.5 0.5 -0.75" rotation="90 -90 0"></a-entity>
+
+        </a-entity>
+    </a-scene>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let cameraRig = document.querySelector("#cameraRig");
+
+            // Ajustar altura de la cámara en móviles y PC
+            cameraRig.setAttribute("position", "0 0.25 0"); // Altura uniforme en ambos dispositivos
+
+            // Forzar reproducción automática de vídeos
+            document.querySelectorAll("video").forEach(video => {
+                video.muted = true;
+                video.play().catch(error => console.log("Autoplay bloqueado:", error));
+            });
+        });
+    </script>
+</body>
+</html>
         </a-entity>
     </a-scene>
 

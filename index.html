@@ -46,12 +46,8 @@
         document.addEventListener("DOMContentLoaded", function() {
             let cameraRig = document.querySelector("#cameraRig");
 
-            // Ajustar posición de la cámara en móviles
-            if (/Android|iPhone|iPad|iPod|Oculus|VR/i.test(navigator.userAgent)) {
-                cameraRig.setAttribute("position", "0 0.25 -0.5"); // Ajuste para móviles dentro del museo
-            } else {
-                cameraRig.setAttribute("position", "0 0.25 -0.5"); // Misma posición en PC
-            }
+            // Ajustar posición de la cámara de manera uniforme
+            cameraRig.setAttribute("position", "0 0.25 -0.5"); // Ubicación dentro del museo
 
             // Forzar reproducción automática de vídeos
             document.querySelectorAll("video").forEach(video => {

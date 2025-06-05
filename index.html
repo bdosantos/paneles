@@ -42,19 +42,6 @@
         </a-entity>
     </a-scene>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let cameraRig = document.querySelector("#cameraRig");
-
-            // Ajustar altura de la cámara en móviles y PC
-            cameraRig.setAttribute("position", "0 0.25 0"); // Altura uniforme en ambos dispositivos
-
-            // Forzar reproducción automática de vídeos
-            document.querySelectorAll("video").forEach(video => {
-                video.muted = true;
-                video.play().catch(error => console.log("Autoplay bloqueado:", error));
-            });
-        });
-    </script>
+   
 </body>
 </html>

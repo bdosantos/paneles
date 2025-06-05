@@ -1,60 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Malasaña en la Estratosfera</title>
-    <meta name="author" content="Begoña Dosantos">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Malasaña en la Estratosfera</title>
+  <meta name="author" content="Begoña Dosantos" />
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
-    <a-scene vr-mode-ui="enabled: true" shadow="enabled: false" renderer="colorManagement: true;">
-        <!-- Iluminación mejorada para VR -->
-        <a-light type="ambient" color="#FFFFFF" intensity="0.5"></a-light>
-        <a-light type="directional" color="#FFFFFF" intensity="1" position="1 3 1"></a-light>
+  <a-scene
+    vr-mode-ui="enabled: true"
+    embedded
+    renderer="antialias: true; colorManagement: true; toneMapping: reinhard;"
+    loading-screen="enabled: true"
+  >
+    <!-- Iluminación equilibrada -->
+    <a-light type="ambient" color="#BBB" intensity="0.7"></a-light>
+    <a-light type="directional" color="#FFF" intensity="0.8" position="2 4 2"></a-light>
 
-        <!-- Carga de modelos y vídeos -->
-        <a-assets>
-            <a-asset-item id="museo2-glb" src="museo2.glb"></a-asset-item>
-            <video id="electronica-mp4" src="electronica.mp4" preload="auto"></video>
-            <video id="caja2-mp4" src="caja2.mp4" preload="auto"></video>
-            <a-asset-item id="Gelectronica-glb" src="Gelectronica.glb"></a-asset-item>
-        </a-assets>
+    <!-- Activos -->
+    <a-assets>
+      <a-asset-item id="museo2-glb" src="museo2.glb"></a-asset-item>
+      <a-asset-item id="Gelectronica-glb" src="Gelectronica.glb"></a-asset-item>
+      <video id="electronica-mp4" src="electronica.mp4" autoplay loop muted crossorigin="anonymous"></video>
+      <video id="caja2-mp4" src="caja2.mp4" autoplay loop muted crossorigin="anonymous"></video>
+    </a-assets>
 
-        <!-- Fondo para mejorar la percepción en VR -->
-        <a-sky color="#222222"></a-sky>
+    <!-- Fondo oscuro -->
+    <a-sky color="#222"></a-sky>
 
-        <!-- Modelo 3D del museo -->
-        <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
-            
-            <!-- Cámara correctamente ubicada dentro del museo -->
-            <a-entity id="cameraRig" position="0 0.25 -0.5">
-                <a-entity id="camera" camera look-controls wasd-controls="acceleration: 50" position="0 0.25 0"></a-entity>
-            </a-entity>
-            
-            <!-- Pantallas de vídeo dentro del museo con altura corregida -->
-            <a-video src="electronica.mp4" position="1.25 0.5 0.25" width="0.75" height="0.5" autoplay loop muted="true" rotation="0 90 0"></a-video>
-            <a-video src="caja2.mp4" position="-0.5 0.5 -1.015" width="0.5" height="0.25" autoplay loop muted="true" rotation="0 180 0"></a-video>
-            
-            <!-- Modelo electrónico dentro del museo -->
-            <a-entity gltf-model="#Gelectronica-glb" scale="0.05 0.05 0.05" position="1.25 0.85 0.25" rotation="90 -90 0"></a-entity>
+    <!-- Modelo del museo a escala adecuada -->
+    <a-entity gltf-model="#museo2-glb" scale="2 2 2" position="0 0 0"></a-entity>
 
-        </a-entity>
-    </a-scene>
+    <!-- Cámara con control dual: ratón (PC) o giroscopio (móvil) -->
+    <a-entity
+      id="cameraRig"
+      position="0 1.6 4"
+    >
+      <a-entity 
+        id="camera"
+        camera
+        look-controls="pointerLockEnabled: true"
+        wasd-controls="acceleration: 50"
+        position="0 0 0"
+      ></a-entity>
+    </a-entity>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let cameraRig = document.querySelector("#cameraRig");
+    <!-- Vídeos integrados en la escena -->
+    <a-video
+      src="#electronica-mp4"
+      position="1.5 1.5 -1.5"
+      width="1.2"
+      height="0.7"
+      rotation="0 -45 0"
+    ></a-video>
 
-            // Asegurar que la cámara está dentro del museo
-            cameraRig.setAttribute("position", "0 0.25 -0.5"); 
+    <a-video
+      src="#caja2-mp4"
+      position="-1.5 1.5 -1.5"
+      width="1"
+      height="0.6"
+      rotation="0 45 0"
+    ></a-video>
 
-            // Forzar reproducción automática de vídeos
-            document.querySelectorAll("video").forEach(video => {
-                video.muted = true;
-                video.play().catch(error => console.log("Autoplay bloqueado:", error));
-            });
-        });
-    </script>
+    <!-- Modelo extra dentro del museo -->
+    <a-entity
+      gltf-model="#Gelectronica-glb"
+      scale="0.1 0.1 0.1"
+      position="0 1 -2.5"
+      rotation="0 180 0"
+    ></a-entity>
+  </a-scene>
+
+  <script>
+    // Reintento de autoplay tras carga
+    window.addEventListener("load", () => {
+      document.querySelectorAll("video").forEach((video) => {
+        video.muted = true;
+        video.play().catch((err) => console.warn("Video no se reproduce:", err));
+      });
+    });
+  </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <a-scene physics="debug: false" shadow="type: basic" renderer="antialias: true; colorManagement: true;">
-        <!-- Iluminación corregida para evitar zonas oscuras -->
+        <!-- Iluminación corregida -->
         <a-light type="ambient" color="#FFF" intensity="1"></a-light>
         <a-light type="directional" color="#FFF" intensity="0.6" position="1 3 1"></a-light>
 
@@ -27,9 +27,9 @@
         <!-- Modelo 3D del museo -->
         <a-entity gltf-model="#museo2-glb" scale="0.5 0.5 0.5" position="0 0 0">
             
-            <!-- Cámara dentro del museo -->
+            <!-- Cámara dentro del museo con ajuste para móviles -->
             <a-entity id="cameraRig" position="0 1.6 0">
-                <a-entity id="camera" camera look-controls wasd-controls="userHeight: 1.6" position="0 0 0"></a-entity>
+                <a-entity id="camera" camera look-controls wasd-controls="acceleration: 50" position="0 0 0"></a-entity>
             </a-entity>
             
             <!-- Pantallas de vídeo dentro del museo -->
@@ -45,12 +45,15 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let cameraRig = document.querySelector("#cameraRig");
+            let camera = document.querySelector("#camera");
 
-            // Ajustar altura de la cámara según el dispositivo
+            // Ajustar cámara en móviles sin afectar PC
             if (/Android|iPhone|iPad|iPod|Oculus|VR/i.test(navigator.userAgent)) {
                 cameraRig.setAttribute("position", "0 1.6 0"); // Ajuste de altura para móviles
+                camera.setAttribute("wasd-controls", "acceleration: 10"); // Menor aceleración en móviles
             } else {
                 cameraRig.setAttribute("position", "0 1.6 0"); // Misma altura en PC
+                camera.setAttribute("wasd-controls", "acceleration: 50"); // Velocidad adecuada en PC
             }
 
             // Forzar reproducción automática de vídeos

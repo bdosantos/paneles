@@ -49,10 +49,10 @@
 
             // Ajustar cámara en móviles sin afectar PC
             if (/Android|iPhone|iPad|iPod|Oculus|VR/i.test(navigator.userAgent)) {
-                cameraRig.setAttribute("position", "0 1.6 0"); // Ajuste de altura para móviles
+                cameraRig.setAttribute("position", "0 0.25 0"); // Ajuste de altura para móviles
                 camera.setAttribute("wasd-controls", "acceleration: 10"); // Menor aceleración en móviles
             } else {
-                cameraRig.setAttribute("position", "0 1.6 0"); // Misma altura en PC
+                cameraRig.setAttribute("position", "0 0.25 0"); // Misma altura en PC
                 camera.setAttribute("wasd-controls", "acceleration: 50"); // Velocidad adecuada en PC
             }
 
